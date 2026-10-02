@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: backend
+    
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dirty_cash
+    username: postgres
+    password: ${DB_PASSWORD}
