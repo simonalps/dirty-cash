@@ -1,28 +1,32 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createWindow() {
-    const window = new BrowserWindow({
-        width: 700,
-        height: 500,
-        title: "Dirty Cash",
-    });
+  const window = new BrowserWindow({
+    width: 900,
+    height: 650,
+    title: "Dirty Cash",
+  });
 
-    window.loadFile("index.html");
+  window.loadURL("http://localhost:5173");
 }
 
 app.whenReady().then(() => {
-    createWindow();
+  createWindow();
 
-    app.on("activate", () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
-    });
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
 });
 
 app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-        app.quit();
-    }
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });
